@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs — Youth Voice Uganda</title>
+  <link rel="icon" type="image" href="assets/logo.jpg">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .prog-section { padding: 60px 0; border-bottom: 2px solid #f0f0f0; }
+    .prog-section:last-child { border-bottom: none; }
+    .prog-layout { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+    .prog-layout.rev .prog-img  { order:2; }
+    .prog-layout.rev .prog-text { order:1; }
+    .prog-img {
+      border-radius: 18px; height: 340px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 90px;
+    }
+    .prog-img--red    { background: linear-gradient(135deg,var(--red),#7B1FA2); }
+    .prog-img--yellow { background: linear-gradient(135deg,var(--yellow),#FF8F00); }
+    .prog-img--black  { background: linear-gradient(135deg,#222,#111); }
+    .prog-img--green  { background: linear-gradient(135deg,#2E7D32,#1B5E20); }
+    .prog-text h2 { font-size:28px; margin-bottom:14px; }
+    .prog-text p  { font-size:15px; color:#555; line-height:1.9; margin-bottom:14px; }
+    .prog-bullets { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+    .prog-bullets li { display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#555; }
+    .prog-bullets li::before { content:'✓'; color:var(--red); font-weight:700; flex-shrink:0; margin-top:2px; }
+    .prog-badge { display:inline-block; background:var(--light-y); border:2px solid var(--yellow); color:var(--black); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; border-radius:20px; padding:4px 14px; margin-bottom:14px; }
+    @media (max-width:768px) {
+      .prog-layout { grid-template-columns:1fr; }
+      .prog-layout.rev .prog-img  { order:0; }
+      .prog-layout.rev .prog-text { order:0; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Programs</span></div>
+    <h1>Our Programs</h1>
+    <p>Four integrated program areas addressing the root challenges of youth and vulnerable communities in Northern Uganda.</p>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="section section--alt" style="text-align:center;">
+  <div class="container" style="max-width:700px;">
+    <span class="tag">Integrated Approach</span>
+    <h2 class="section-title">Programs Built With Communities</h2>
+    <p style="font-size:16px;color:var(--grey);line-height:1.9;">Youth Voice Uganda designs and delivers programs that are rooted in community needs, informed by local realities, and driven by the voices of the young people and vulnerable groups we serve. Our four program areas are interconnected — rights enable economic participation, health enables learning, and livelihoods sustain communities.</p>
+  </div>
+</section>
+
+<!-- Program 1: Human Rights -->
+<section class="section" id="rights">
+  <div class="container">
+    <div class="prog-section">
+      <div class="prog-layout">
+        <div class="prog-img prog-img--red">⚖️</div>
+        <div class="prog-text">
+          <span class="prog-badge">Program 01</span>
+          <div class="red-line"></div>
+          <h2>Human Rights Protection &amp; Advocacy</h2>
+          <p>We believe every youth and vulnerable person in Uganda deserves to know, claim, and defend their rights. This program focuses on building legal awareness, community advocacy, and accountability systems that protect the most marginalised.</p>
+          <ul class="prog-bullets">
+            <li>Community human rights awareness campaigns and workshops</li>
+            <li>Legal aid referrals and support for vulnerable individuals</li>
+            <li>Engagement with local government, police, and duty-bearers</li>
+            <li>Child rights protection and safeguarding initiatives</li>
+            <li>Gender-based violence (GBV) prevention and response</li>
+            <li>Training of community human rights champions and defenders</li>
+            <li>Advocacy for policy change at district and national level</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Program 2: Economic -->
+<section class="section section--alt" id="economic">
+  <div class="container">
+    <div class="prog-section">
+      <div class="prog-layout rev">
+        <div class="prog-img prog-img--yellow">💼</div>
+        <div class="prog-text">
+          <span class="prog-badge">Program 02</span>
+          <div class="red-line"></div>
+          <h2>Socio-Economic Training &amp; Livelihoods</h2>
+          <p>Economic empowerment is central to sustainable change. This program equips youth, women, and vulnerable groups with practical skills and knowledge to build dignified, self-sustaining livelihoods in Lamwo District and beyond.</p>
+          <ul class="prog-bullets">
+            <li>Business skills training — planning, management, marketing</li>
+            <li>Vocational and technical skills training programs</li>
+            <li>Financial literacy, saving, and investment education</li>
+            <li>Village Savings and Loan Associations (VSLAs) support</li>
+            <li>Entrepreneurship mentorship and startup guidance</li>
+            <li>Agricultural skills and agri-business development</li>
+            <li>Linkage to markets, micro-finance, and business networks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Program 3: Health -->
+<section class="section" id="health">
+  <div class="container">
+    <div class="prog-section">
+      <div class="prog-layout">
+        <div class="prog-img prog-img--black">🏥</div>
+        <div class="prog-text">
+          <span class="prog-badge">Program 03</span>
+          <div class="red-line"></div>
+          <h2>Health Sensitisation &amp; Medical Support</h2>
+          <p>Access to health information and services saves lives. VOYU runs community health programs that bring education, support, and referral services directly to communities who would otherwise go without.</p>
+          <ul class="prog-bullets">
+            <li>HIV/AIDS awareness, testing promotion, and prevention</li>
+            <li>Maternal and child health education and support</li>
+            <li>Community health outreach and mobile health camps</li>
+            <li>Medical referral system to health facilities</li>
+            <li>Nutrition education and food security programs</li>
+            <li>Water, sanitation, and hygiene (WASH) promotion</li>
+            <li>Mental health awareness and psychosocial support</li>
+            <li>Training of community health volunteers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Program 4: Adolescent -->
+<section class="section section--alt" id="adolescent">
+  <div class="container">
+    <div class="prog-section">
+      <div class="prog-layout rev">
+        <div class="prog-img prog-img--green">🌱</div>
+        <div class="prog-text">
+          <span class="prog-badge">Program 04</span>
+          <div class="red-line"></div>
+          <h2>Adolescent Health &amp; Youth Development</h2>
+          <p>Young people need safe spaces, accurate information, and life skills to make healthy decisions. Our adolescent health program addresses the unique needs of youth aged 10–24, creating an environment of trust, learning, and empowerment.</p>
+          <ul class="prog-bullets">
+            <li>Sexual and reproductive health (SRH) education</li>
+            <li>Teen pregnancy prevention and response programs</li>
+            <li>Life skills training — decision-making, communication, leadership</li>
+            <li>Safe spaces / youth clubs for open discussion</li>
+            <li>Peer education and youth-to-youth mentorship</li>
+            <li>School-based health and rights sensitisation</li>
+            <li>Substance abuse awareness and prevention</li>
+            <li>Psychosocial support for youth in distress</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section--red" style="text-align:center;">
+  <div class="container" style="max-width:580px;">
+    <h2 style="color:var(--white);">Support These Programs</h2>
+    <p style="color:rgba(255,255,255,0.82);margin:14px 0 30px;font-size:16px;">Your contribution — big or small — directly funds these community programs and creates real change in Lamwo District.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="donate.html"  class="btn btn-yellow">💛 Donate Now</a>
+      <a href="contact.html" class="btn btn-outline">Volunteer / Partner</a>
+    </div>
+  </div>
+</section>
+
+<script src="shared.js"></script>
+</body>
+</html>

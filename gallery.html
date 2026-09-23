@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Youth Voice Uganda</title>
+  <link rel="icon" type="image" href="assets/logo.jpg">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .filter-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
+    .filter-btn { padding:8px 20px; border:2px solid #ddd; border-radius:30px; background:var(--white); font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; cursor:pointer; color:var(--grey); transition:all 0.2s; }
+    .filter-btn.active, .filter-btn:hover { background:var(--red); border-color:var(--red); color:var(--white); }
+    .gallery-item { background:linear-gradient(135deg,#222,#111); }
+    .gallery-item--red    { background:linear-gradient(135deg,var(--red),#880E4F); }
+    .gallery-item--yellow { background:linear-gradient(135deg,var(--yellow),#E65100); }
+    .gallery-item--green  { background:linear-gradient(135deg,#2E7D32,#1B5E20); }
+    .gallery-item--blue   { background:linear-gradient(135deg,#1565C0,#0D47A1); }
+    .gallery-item--purple { background:linear-gradient(135deg,#6A1B9A,#4A148C); }
+    /* Lightbox */
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; }
+    .lightbox.open { display:flex; }
+    .lightbox__inner { background:#1a1a1a; border-radius:16px; max-width:640px; width:90%; padding:40px; text-align:center; position:relative; }
+    .lightbox__close { position:absolute; top:16px; right:20px; background:none; border:none; color:var(--white); font-size:28px; cursor:pointer; }
+    .lightbox__emoji { font-size:80px; margin-bottom:16px; }
+    .lightbox__title { color:var(--white); font-size:20px; margin-bottom:8px; }
+    .lightbox__desc  { color:rgba(255,255,255,0.65); font-size:14px; line-height:1.7; }
+    .upload-notice { background:var(--light-y); border:2px dashed var(--yellow); border-radius:var(--radius); padding:32px; text-align:center; margin-bottom:32px; }
+    .upload-notice h3 { font-size:16px; margin-bottom:8px; }
+    .upload-notice p  { font-size:14px; color:var(--grey); line-height:1.7; }
+  </style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Gallery</span></div>
+    <h1>Photo Gallery</h1>
+    <p>Moments from our community programs, trainings, outreach activities, and advocacy campaigns across Lamwo District.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="tag">Our Work in Pictures</span>
+    <h2 class="section-title">Activities &amp; Events</h2>
+    <p class="section-sub">A visual journey through the work Youth Voice Uganda does every day in communities across Northern Uganda.</p>
+
+    <!-- Upload notice -->
+    <div class="upload-notice">
+      <h3>📸 Add Your Photos</h3>
+      <p>This gallery is ready to display your real program photos. Send your images to <strong>youthvoiceuganda26@gmail.com</strong> and your web developer will upload them here. All program areas are represented below as placeholders.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+      <button class="filter-btn" onclick="filterGallery('rights', this)">Human Rights</button>
+      <button class="filter-btn" onclick="filterGallery('economic', this)">Economic</button>
+      <button class="filter-btn" onclick="filterGallery('health', this)">Health</button>
+      <button class="filter-btn" onclick="filterGallery('adolescent', this)">Adolescent</button>
+      <button class="filter-btn" onclick="filterGallery('events', this)">Events</button>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item gallery-item--red" data-cat="rights" onclick="openLightbox('⚖️','Community Rights Workshop','Participants learning about their legal rights and how to access justice in Padibe Town Council, Lamwo District.')">
+        <span>⚖️</span>
+        <div class="gallery-item__label">Community Rights Workshop</div>
+      </div>
+      <div class="gallery-item gallery-item--yellow" data-cat="economic" onclick="openLightbox('💼','Business Skills Training','Youth from Lamwo District learning entrepreneurship and financial literacy skills to start their own businesses.')">
+        <span>💼</span>
+        <div class="gallery-item__label">Business Skills Training</div>
+      </div>
+      <div class="gallery-item gallery-item--green" data-cat="health" onclick="openLightbox('🏥','Health Outreach Camp','Community health camp bringing free medical consultations and HIV testing to remote villages in Lamwo.')">
+        <span>🏥</span>
+        <div class="gallery-item__label">Health Outreach Camp</div>
+      </div>
+      <div class="gallery-item gallery-item--purple" data-cat="adolescent" onclick="openLightbox('🌱','Adolescent Health Session','Safe space session for young people to discuss reproductive health, life skills, and mental wellbeing.')">
+        <span>🌱</span>
+        <div class="gallery-item__label">Adolescent Health Session</div>
+      </div>
+      <div class="gallery-item gallery-item--blue" data-cat="events" onclick="openLightbox('🎉','Annual General Meeting','Youth Voice Uganda Annual General Meeting bringing together community members, partners, and stakeholders.')">
+        <span>🎉</span>
+        <div class="gallery-item__label">Annual General Meeting</div>
+      </div>
+      <div class="gallery-item gallery-item--red" data-cat="rights" onclick="openLightbox('📢','GBV Awareness Campaign','Community awareness campaign on gender-based violence prevention and response in Padibe Town Council.')">
+        <span>📢</span>
+        <div class="gallery-item__label">GBV Awareness Campaign</div>
+      </div>
+      <div class="gallery-item gallery-item--yellow" data-cat="economic" onclick="openLightbox('🌾','Agri-Business Training','Training session on sustainable agriculture and agri-business to improve food security and incomes in Lamwo.')">
+        <span>🌾</span>
+        <div class="gallery-item__label">Agri-Business Training</div>
+      </div>
+      <div class="gallery-item gallery-item--green" data-cat="health" onclick="openLightbox('💊','HIV/AIDS Awareness','Community sensitisation on HIV/AIDS prevention, testing, and treatment, reducing stigma in our communities.')">
+        <span>💊</span>
+        <div class="gallery-item__label">HIV/AIDS Awareness</div>
+      </div>
+      <div class="gallery-item" data-cat="adolescent" onclick="openLightbox('👥','Youth Club Meeting','Regular youth club meetings providing a safe space for adolescents to learn, share, and support each other.')">
+        <span>👥</span>
+        <div class="gallery-item__label">Youth Club Meeting</div>
+      </div>
+      <div class="gallery-item gallery-item--blue" data-cat="events" onclick="openLightbox('🤝','Partners Meeting','Stakeholder and partners meeting to review program progress and plan future activities in Lamwo District.')">
+        <span>🤝</span>
+        <div class="gallery-item__label">Partners Meeting</div>
+      </div>
+      <div class="gallery-item gallery-item--purple" data-cat="rights" onclick="openLightbox('🏛️','District Advocacy','VOYU team meeting with district officials to advocate for youth-friendly policies and services in Lamwo.')">
+        <span>🏛️</span>
+        <div class="gallery-item__label">District Advocacy</div>
+      </div>
+      <div class="gallery-item gallery-item--yellow" data-cat="health" onclick="openLightbox('🚰','WASH Program','Water, sanitation and hygiene program promoting safe water use and proper sanitation in community households.')">
+        <span>🚰</span>
+        <div class="gallery-item__label">WASH Program</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Share photos CTA -->
+<section class="section section--yellow">
+  <div class="container" style="text-align:center;max-width:600px;">
+    <h2>Share Your Story</h2>
+    <p style="font-size:16px;color:rgba(0,0,0,0.7);margin:12px 0 28px;line-height:1.8;">Are you a community member, volunteer, or partner who has photos from our programs? Share them with us — your images help tell the story of change.</p>
+    <a href="contact.html" class="btn btn-red">📸 Send Photos</a>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox__inner">
+    <button class="lightbox__close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox__emoji" id="lbEmoji">📸</div>
+    <h3 class="lightbox__title" id="lbTitle">Title</h3>
+    <p class="lightbox__desc" id="lbDesc">Description</p>
+    <p style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:16px;">Real photos will appear here once uploaded</p>
+  </div>
+</div>
+
+<script>
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'flex' : 'none';
+    });
+  }
+  function openLightbox(emoji, title, desc) {
+    document.getElementById('lbEmoji').textContent = emoji;
+    document.getElementById('lbTitle').textContent = title;
+    document.getElementById('lbDesc').textContent  = desc;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+</script>
+<script src="shared.js"></script>
+</body>
+</html>

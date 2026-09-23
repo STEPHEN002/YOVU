@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youth Voice Uganda — Advocates for Youth &amp; Vulnerable Groups</title>
+  <link rel="icon" type="image" href="assets/logo.jpg">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      background: var(--black);
+      min-height: 90vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(211,47,47,0.18) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(253,216,53,0.10) 0%, transparent 50%);
+    }
+    /* Uganda-flag accent stripe */
+    .hero__stripe {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(to right, #111 33%, #D32F2F 33%, #D32F2F 66%, #FDD835 66%);
+    }
+    .hero__inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero__text .tag { margin-bottom: 18px; }
+    .hero__text h1 {
+      color: var(--white);
+      font-size: clamp(36px, 5.5vw, 62px);
+      line-height: 1.1; margin-bottom: 18px;
+    }
+    .hero__text h1 span { color: var(--yellow); }
+    .hero__text p {
+      color: rgba(255,255,255,0.75);
+      font-size: 17px; line-height: 1.85;
+      margin-bottom: 36px; max-width: 480px;
+    }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero__visual {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero__logo-ring {
+      width: 340px; height: 340px; border-radius: 50%;
+      border: 3px solid rgba(253,216,53,0.25);
+      padding: 18px;
+      background: rgba(255,255,255,0.04);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 80px rgba(211,47,47,0.2);
+      animation: float 4s ease-in-out infinite;
+    }
+    .hero__logo-ring img { border-radius: 50%; width: 100%; height: 100%; object-fit: cover; }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+    @media (max-width:768px) {
+      .hero__inner { grid-template-columns:1fr; text-align:center; }
+      .hero__text p { margin:0 auto 32px; }
+      .hero__actions { justify-content:center; }
+      .hero__logo-ring { width:220px; height:220px; }
+    }
+
+    /* ── Uganda-colours divider ── */
+    .flag-bar { height: 8px; background: linear-gradient(to right,#111 33%,#D32F2F 33%,#D32F2F 66%,#FDD835 66%); }
+
+    /* ── Mission strip ── */
+    .mission-strip { background: var(--red); padding: 24px 0; text-align: center; }
+    .mission-strip p { color: var(--white); font-size: 17px; font-family: 'Montserrat',sans-serif; font-weight: 600; }
+
+    /* ── VM split ── */
+    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .vm-cell { padding: 56px 48px; }
+    .vm-cell--dark   { background: var(--black); }
+    .vm-cell--dark h2, .vm-cell--dark p { color: var(--white); }
+    .vm-cell--yellow { background: var(--yellow); }
+    .vm-cell--yellow h2 { color: var(--black); }
+    .vm-cell--yellow p { color: rgba(0,0,0,0.72); }
+    .vm-cell p { font-size:16px; line-height:1.9; margin-top:12px; opacity:.9; }
+    @media (max-width:700px) { .vm-grid { grid-template-columns:1fr; } }
+
+    /* ── CTA banner ── */
+    .cta-banner { background: var(--red); padding: 64px 0; text-align: center; }
+    .cta-banner h2 { color: var(--white); margin-bottom: 10px; }
+    .cta-banner p  { color: rgba(255,255,255,0.82); margin-bottom: 30px; font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero__stripe"></div>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <span class="tag fu">CBO · Lamwo District, Uganda · Est. 2019</span>
+        <h1 class="fu2">Giving Youth a <span>Powerful Voice</span></h1>
+        <p class="fu3">Advocating for youth and vulnerable groups on health, human rights protection, and economic livelihoods across Northern Uganda.</p>
+        <div class="hero__actions fu3">
+          <a href="programs.html" class="btn btn-red">Our Programs</a>
+          <a href="donate.html"   class="btn btn-yellow">💛 Support Us</a>
+          <a href="about.html"    class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+      <div class="hero__visual fu2">
+        <div class="hero__logo-ring">
+          <img src="assets/logo.jpg" alt="Youth Voice Uganda Logo">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="flag-bar"></div>
+
+<!-- Mission strip -->
+<div class="mission-strip">
+  <div class="container">
+    <p>📢 "Advocates for Youth &amp; Other Vulnerable Groups on Health, Human Rights Protection and Economic Livelihood"</p>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-bar__grid">
+      <div><div class="stats-bar__num">2019</div><div class="stats-bar__lbl">Year Founded</div></div>
+      <div><div class="stats-bar__num">4+</div><div class="stats-bar__lbl">Core Programs</div></div>
+      <div><div class="stats-bar__num">Lamwo</div><div class="stats-bar__lbl">District, Uganda</div></div>
+      <div><div class="stats-bar__num">CBO</div><div class="stats-bar__lbl">Reg. L/CD/109972</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Programs preview -->
+<section class="section">
+  <div class="container">
+    <span class="tag">What We Do</span>
+    <h2 class="section-title">Our Core Programs</h2>
+    <p class="section-sub">Four integrated focus areas tackling the root challenges faced by youth and vulnerable communities in Northern Uganda.</p>
+    <div class="grid-3">
+      <div class="prog-card">
+        <div class="prog-card__top prog-card__top--red"></div>
+        <div class="prog-card__body">
+          <div class="prog-card__icon">⚖️</div>
+          <h3>Human Rights Advocacy</h3>
+          <p>Promoting and protecting the rights of youth, women, and other vulnerable groups through awareness, legal support, and community mobilisation.</p>
+          <a href="programs.html#rights" style="display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--red);font-family:'Montserrat',sans-serif;">Learn more →</a>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card__top prog-card__top--yellow"></div>
+        <div class="prog-card__body">
+          <div class="prog-card__icon">💼</div>
+          <h3>Socio-Economic Training</h3>
+          <p>Building sustainable livelihoods through business skills, vocational training, entrepreneurship, and financial literacy programs for youth and women.</p>
+          <a href="programs.html#economic" style="display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--red);font-family:'Montserrat',sans-serif;">Learn more →</a>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card__top prog-card__top--red"></div>
+        <div class="prog-card__body">
+          <div class="prog-card__icon">🏥</div>
+          <h3>Health &amp; Medical Support</h3>
+          <p>Sensitisation on health programs, medical support, referral systems, and community health outreach targeting the most vulnerable populations.</p>
+          <a href="programs.html#health" style="display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--red);font-family:'Montserrat',sans-serif;">Learn more →</a>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-card__top prog-card__top--black"></div>
+        <div class="prog-card__body">
+          <div class="prog-card__icon">🌱</div>
+          <h3>Adolescent Health</h3>
+          <p>Comprehensive adolescent health programs covering sexual and reproductive health, mental wellbeing, and life skills for young people.</p>
+          <a href="programs.html#adolescent" style="display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--red);font-family:'Montserrat',sans-serif;">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision / Mission -->
+<div class="vm-grid">
+  <div class="vm-cell vm-cell--dark">
+    <div class="yellow-line"></div>
+    <h2>Our Vision</h2>
+    <p>A justifiable society with health and economic stability — where every young person and vulnerable community member can live with dignity, opportunity, and hope.</p>
+  </div>
+  <div class="vm-cell vm-cell--yellow">
+    <div class="red-line"></div>
+    <h2>Our Mission</h2>
+    <p>To advocate for youth and other vulnerable groups on health, human rights protection, and economic livelihoods, empowering communities across Northern Uganda to thrive.</p>
+  </div>
+</div>
+
+<!-- Testimonials -->
+<section class="section section--alt">
+  <div class="container">
+    <span class="tag tag--red">Impact Stories</span>
+    <h2 class="section-title">Voices from the Community</h2>
+    <p class="section-sub">Real stories from the youth and community members we work with every day.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__quote">"</div>
+        <p>Youth Voice Uganda gave me the skills and confidence to start my own small business. Today I support my family and employ two other young people in our community.</p>
+        <div class="testimonial-card__name">Akello Grace</div>
+        <div class="testimonial-card__role">Economic Training Beneficiary, Lamwo</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__quote">"</div>
+        <p>Through the human rights advocacy programs, I learned that I have rights and I learned how to defend them. VOYU helped me access justice when I needed it most.</p>
+        <div class="testimonial-card__name">Okot Emmanuel</div>
+        <div class="testimonial-card__role">Youth Advocate, Padibe Town Council</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__quote">"</div>
+        <p>The health sensitisation program reached our village at the right time. Many young mothers now understand maternal health and our children are healthier because of it.</p>
+        <div class="testimonial-card__name">Aber Stella</div>
+        <div class="testimonial-card__role">Community Health Champion, Lamwo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Partners -->
+<section class="section">
+  <div class="container">
+    <span class="tag">Partners &amp; Supporters</span>
+    <h2 class="section-title">Our Partners</h2>
+    <p class="section-sub">We work with government agencies, NGOs, and community organisations to maximise our impact.</p>
+    <div class="partners-grid">
+      <div class="partner-logo">🏛️ Lamwo District Local Government</div>
+      <div class="partner-logo">🌍 Community Partners</div>
+      <div class="partner-logo">🤝 Local NGOs</div>
+      <div class="partner-logo">🎓 Youth Networks</div>
+      <div class="partner-logo">❤️ Health Partners</div>
+      <div class="partner-logo">💼 Business Groups</div>
+    </div>
+    <p style="font-size:13px;color:var(--grey);margin-top:20px;font-style:italic;">Want to partner with us? <a href="contact.html" style="color:var(--red);font-weight:700;">Get in touch →</a></p>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<div class="newsletter">
+  <div class="container">
+    <div class="newsletter__inner">
+      <div class="newsletter__text">
+        <h2>Stay Updated</h2>
+        <p>Get our latest news, program updates, and impact stories delivered to your inbox.</p>
+      </div>
+      <div class="newsletter__form">
+        <input type="email" placeholder="Enter your email address" id="nlEmail">
+        <button class="btn btn-red" onclick="subscribeNewsletter()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Join Us in Creating Change</h2>
+    <p>Volunteer, donate, or partner with Youth Voice Uganda — every action counts.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="donate.html"  class="btn btn-yellow">💛 Donate Now</a>
+      <a href="contact.html" class="btn btn-outline">Get Involved</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function subscribeNewsletter() {
+    const email = document.getElementById('nlEmail').value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+    alert('Thank you for subscribing! We\'ll keep you updated on our work.');
+    document.getElementById('nlEmail').value = '';
+  }
+</script>
+<script src="shared.js"></script>
+</body>
+</html>

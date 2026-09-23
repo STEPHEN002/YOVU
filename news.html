@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News &amp; Updates — Youth Voice Uganda</title>
+  <link rel="icon" type="image" href="assets/logo.jpg">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .news-layout { display:grid; grid-template-columns:2fr 1fr; gap:48px; align-items:start; }
+    @media (max-width:860px) { .news-layout { grid-template-columns:1fr; } }
+    .news-card { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; margin-bottom:28px; display:grid; grid-template-columns:200px 1fr; }
+    .news-card__img { display:flex; align-items:center; justify-content:center; font-size:52px; min-height:160px; }
+    .news-card__img--red    { background:linear-gradient(135deg,var(--red),#880E4F); }
+    .news-card__img--yellow { background:linear-gradient(135deg,var(--yellow),#E65100); }
+    .news-card__img--dark   { background:linear-gradient(135deg,#222,#111); }
+    .news-card__body { padding:24px; }
+    .news-card__meta { display:flex; gap:12px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+    .news-card__date { font-size:12px; color:var(--grey); font-weight:600; text-transform:uppercase; letter-spacing:0.07em; }
+    .news-card__cat  { font-size:11px; font-weight:700; background:var(--light-y); color:var(--black); padding:3px 10px; border-radius:20px; font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.06em; }
+    .news-card__body h3 { font-size:18px; margin-bottom:10px; line-height:1.35; }
+    .news-card__body p  { font-size:14px; color:var(--grey); line-height:1.75; }
+    .news-card__link { display:inline-block; margin-top:14px; font-size:13px; font-weight:700; color:var(--red); font-family:'Montserrat',sans-serif; }
+    @media (max-width:560px) { .news-card { grid-template-columns:1fr; } .news-card__img { min-height:120px; } }
+
+    /* Sidebar */
+    .sidebar-box { background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; margin-bottom:24px; }
+    .sidebar-box h4 { font-size:13px; font-weight:700; font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.09em; color:var(--black); margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--yellow); }
+    .sidebar-link { display:block; font-size:14px; color:var(--grey); padding:9px 0; border-bottom:1px solid #f0f0f0; transition:color var(--tr); }
+    .sidebar-link:last-child { border-bottom:none; }
+    .sidebar-link:hover { color:var(--red); }
+    .sidebar-link span { float:right; font-size:12px; color:var(--grey); }
+    .cat-pill { display:inline-block; background:var(--offwhite); border:1px solid #ddd; border-radius:20px; font-size:12px; font-weight:700; font-family:'Montserrat',sans-serif; padding:5px 14px; margin:4px; cursor:pointer; color:var(--grey); transition:all 0.2s; text-transform:uppercase; letter-spacing:0.05em; }
+    .cat-pill:hover { background:var(--red); border-color:var(--red); color:var(--white); }
+  </style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>News &amp; Updates</span></div>
+    <h1>News &amp; Updates</h1>
+    <p>Latest reports, program updates, advocacy wins, and stories from Youth Voice Uganda and our communities.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="news-layout">
+
+      <!-- Main news -->
+      <div>
+        <span class="tag">Latest Updates</span>
+        <h2 class="section-title" style="margin-bottom:32px;">Recent Stories</h2>
+
+        <div class="news-card">
+          <div class="news-card__img news-card__img--red">📢</div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__date">September 2026</span>
+              <span class="news-card__cat">Human Rights</span>
+            </div>
+            <h3>VOYU Conducts Community Human Rights Awareness Workshop in Padibe</h3>
+            <p>Youth Voice Uganda held a successful community human rights awareness workshop in Padibe Town Council, reaching over 80 community members with information on their legal rights, GBV response pathways, and how to access justice. Participants included youth, women, and community leaders.</p>
+            <a href="#" class="news-card__link">Read full story →</a>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-card__img news-card__img--yellow">💼</div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__date">August 2026</span>
+              <span class="news-card__cat">Economic</span>
+            </div>
+            <h3>30 Youth Complete Business Skills and Entrepreneurship Training in Lamwo</h3>
+            <p>Thirty young people — 18 women and 12 men — graduated from VOYU's 6-week business skills training program in Lamwo District. Participants gained practical skills in business planning, financial management, and marketing, and will be supported to access startup capital through village savings groups.</p>
+            <a href="#" class="news-card__link">Read full story →</a>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-card__img news-card__img--dark">🏥</div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__date">July 2026</span>
+              <span class="news-card__cat">Health</span>
+            </div>
+            <h3>Free Health Camp Serves Over 150 Community Members in Remote Villages</h3>
+            <p>In partnership with local health workers, Youth Voice Uganda organised a mobile health camp in three remote sub-counties of Lamwo District. Over 150 community members accessed free health consultations, HIV testing, family planning services, and malaria treatment. Thirteen individuals were referred for further care.</p>
+            <a href="#" class="news-card__link">Read full story →</a>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-card__img news-card__img--red">🌱</div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__date">June 2026</span>
+              <span class="news-card__cat">Adolescent Health</span>
+            </div>
+            <h3>New Youth Safe Space Opened in Padibe — A Hub for Adolescent Health</h3>
+            <p>Youth Voice Uganda officially opened a new youth-friendly safe space in Padibe Town Council, providing adolescents aged 10–24 with a confidential environment to access sexual and reproductive health information, counselling, life skills training, and peer support every week.</p>
+            <a href="#" class="news-card__link">Read full story →</a>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-card__img news-card__img--yellow">🤝</div>
+          <div class="news-card__body">
+            <div class="news-card__meta">
+              <span class="news-card__date">May 2026</span>
+              <span class="news-card__cat">Partnerships</span>
+            </div>
+            <h3>VOYU Engages Lamwo District Local Government on Youth-Friendly Policies</h3>
+            <p>Youth Voice Uganda met with Lamwo District Local Government officials to present community findings on barriers to youth employment, health access, and rights violations. The meeting resulted in commitments to include youth representatives in key district planning processes.</p>
+            <a href="#" class="news-card__link">Read full story →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div>
+        <div class="sidebar-box">
+          <h4>Categories</h4>
+          <span class="cat-pill">Human Rights</span>
+          <span class="cat-pill">Economic</span>
+          <span class="cat-pill">Health</span>
+          <span class="cat-pill">Adolescent</span>
+          <span class="cat-pill">Events</span>
+          <span class="cat-pill">Partners</span>
+          <span class="cat-pill">Reports</span>
+        </div>
+
+        <div class="sidebar-box">
+          <h4>Recent Posts</h4>
+          <a href="#" class="sidebar-link">Community Rights Workshop — Padibe <span>Sep 2026</span></a>
+          <a href="#" class="sidebar-link">30 Youth Graduate Business Training <span>Aug 2026</span></a>
+          <a href="#" class="sidebar-link">Free Health Camp — 150 Served <span>Jul 2026</span></a>
+          <a href="#" class="sidebar-link">Youth Safe Space Opened <span>Jun 2026</span></a>
+          <a href="#" class="sidebar-link">District Policy Engagement <span>May 2026</span></a>
+        </div>
+
+        <div class="sidebar-box">
+          <h4>Subscribe to Updates</h4>
+          <p style="font-size:13px;color:var(--grey);line-height:1.7;margin-bottom:14px;">Get our latest news and program updates straight to your inbox.</p>
+          <div class="form-group" style="margin-bottom:10px;">
+            <input type="email" placeholder="Your email address" id="sideEmail">
+          </div>
+          <button class="btn btn-red" style="width:100%;justify-content:center;font-size:13px;" onclick="sideSubscribe()">Subscribe</button>
+        </div>
+
+        <div class="sidebar-box" style="background:var(--black);">
+          <h4>Support Our Work</h4>
+          <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:16px;">Every donation directly funds our community programs in Lamwo District.</p>
+          <a href="donate.html" class="btn btn-yellow" style="width:100%;justify-content:center;font-size:13px;">💛 Donate Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter section -->
+<div class="newsletter">
+  <div class="container">
+    <div class="newsletter__inner">
+      <div class="newsletter__text">
+        <h2>Never Miss an Update</h2>
+        <p>Stay connected with Youth Voice Uganda's work across Lamwo District.</p>
+      </div>
+      <div class="newsletter__form">
+        <input type="email" placeholder="Enter your email address" id="nlEmail">
+        <button class="btn btn-red" onclick="nlSubscribe()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function sideSubscribe() {
+    const e = document.getElementById('sideEmail').value.trim();
+    if (!e || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { alert('Please enter a valid email.'); return; }
+    alert('Thank you! You have been subscribed to our updates.'); document.getElementById('sideEmail').value='';
+  }
+  function nlSubscribe() {
+    const e = document.getElementById('nlEmail').value.trim();
+    if (!e || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { alert('Please enter a valid email.'); return; }
+    alert('Thank you! You have been subscribed to our updates.'); document.getElementById('nlEmail').value='';
+  }
+</script>
+<script src="shared.js"></script>
+</body>
+</html>

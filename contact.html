@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Youth Voice Uganda</title>
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" type="image" href="assets/logo.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    .success-msg { display:none; background:#e8f5e9; border:2px solid #2E7D32; border-radius:var(--radius); padding:18px 22px; margin-top:16px; color:#1B5E20; font-weight:600; font-size:15px; line-height:1.6; }
+    .error-msg   { display:none; background:#ffebee; border:2px solid var(--red); border-radius:var(--radius); padding:16px 20px; margin-top:14px; color:#B71C1C; font-size:14px; line-height:1.6; }
+    .submit-btn  { width:100%; justify-content:center; font-size:15px; padding:15px; }
+    .submit-btn:disabled { opacity:0.7; cursor:not-allowed; transform:none !important; }
+    .btn-spinner { display:inline-block; width:15px; height:15px; border:2px solid rgba(255,255,255,0.4); border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite; margin-right:8px; vertical-align:middle; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .map-wrap { background:linear-gradient(135deg,var(--black),#2c2c2c); border-radius:16px; height:260px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:var(--white); margin-top:36px; padding:28px; }
+    .map-wrap h3 { color:var(--white); margin-bottom:8px; }
+    .map-wrap p  { color:rgba(255,255,255,0.7); font-size:14px; line-height:1.7; }
+    .setup-notice { background:var(--light-y); border:2px solid var(--yellow); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; font-size:13px; color:#5d4037; line-height:1.7; display:none; }
+    .setup-notice code { background:rgba(0,0,0,0.08); padding:2px 6px; border-radius:4px; font-family:monospace; }
+  </style>
+</head>
+<body>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+    <h1>Contact Us</h1>
+    <p>Reach out to Youth Voice Uganda — we welcome donors, partners, volunteers, community members, and media.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Left: Info -->
+      <div>
+        <span class="tag">Get In Touch</span>
+        <div class="red-line"></div>
+        <h2 class="section-title" style="font-size:26px;">We're Based in Lamwo District</h2>
+        <p style="font-size:15px;color:var(--grey);line-height:1.8;margin-bottom:28px;">Reach us through any channel below. We respond to all inquiries within 2–3 business days.</p>
+
+        <div class="contact-info">
+          <div class="contact-info__item">
+            <div class="contact-info__icon">📍</div>
+            <div><h4>Physical Address</h4><p>Latwol Cell, Padibe Town Council<br>Lamwo District, Uganda</p></div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__icon">📞</div>
+            <div><h4>Phone Numbers</h4><p>+256 773 704 947<br>+256 777 759 956</p></div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__icon">✉️</div>
+            <div><h4>Email Address</h4><p>youthvoiceuganda26@gmail.com</p></div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__icon">🏛️</div>
+            <div><h4>Registration</h4><p>CBO L/CD/109972<br>Founded: 5th July 2019</p></div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__icon">💛</div>
+            <div><h4>Support Us</h4><p><a href="donate.html" style="color:var(--red);font-weight:700;">Click here to donate</a> via Mobile Money, card, or bank transfer.</p></div>
+          </div>
+        </div>
+
+        <div class="map-wrap">
+          <div style="font-size:48px;margin-bottom:12px;">📍</div>
+          <h3>Padibe Town Council</h3>
+          <p>Lamwo District, Northern Uganda<br>Latwol Cell</p>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div>
+        <span class="tag tag--red">Send a Message</span>
+        <div class="red-line"></div>
+        <h2 class="section-title" style="font-size:26px;">Write To Us</h2>
+        <p style="font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:22px;">Messages are sent directly to <strong style="color:var(--black);">youthvoiceuganda26@gmail.com</strong>.</p>
+
+        <div class="setup-notice" id="setupNotice">
+          ⚙️ <strong>Admin:</strong> Replace <code>YOUR_PUBLIC_KEY</code>, <code>YOUR_SERVICE_ID</code>, <code>YOUR_TEMPLATE_ID</code> with your <a href="https://emailjs.com" target="_blank" style="color:var(--red);font-weight:600;">EmailJS</a> credentials to activate email delivery. See <strong>SETUP_GUIDE.txt</strong>.
+        </div>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group"><label>First Name *</label><input type="text" id="fname" placeholder="e.g. Okello" required></div>
+            <div class="form-group"><label>Last Name</label><input type="text" id="lname" placeholder="e.g. Patrick"></div>
+          </div>
+          <div class="form-group"><label>Email Address *</label><input type="email" id="email" placeholder="you@example.com" required></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="phone" placeholder="+256 7XX XXX XXX"></div>
+          <div class="form-group">
+            <label>I am interested in *</label>
+            <select id="interest" required>
+              <option value="">— Select one —</option>
+              <option>Volunteering / Peer Education</option>
+              <option>Internship / Attachment</option>
+              <option>Donating / Funding</option>
+              <option>Partnership / Collaboration</option>
+              <option>Media / Press Inquiry</option>
+              <option>Program Information</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Your Message *</label><textarea id="message" placeholder="Tell us about yourself and how you'd like to get involved with Youth Voice Uganda..." required></textarea></div>
+          <button type="submit" class="btn btn-red submit-btn" id="submitBtn">✉️ Send Message</button>
+          <div class="success-msg" id="successMsg">✅ <strong>Message sent!</strong><br>Thank you for reaching out. Your message has been delivered and we'll respond within 2–3 business days.</div>
+          <div class="error-msg"   id="errorMsg">❌ <strong>Failed to send.</strong><br>Please try again or email us directly at <strong>youthvoiceuganda26@gmail.com</strong> or call <strong>+256 773 704 947</strong>.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ways to help -->
+<section class="section section--yellow">
+  <div class="container">
+    <span class="tag tag--dark">Get Involved</span>
+    <h2 class="section-title">How You Can Help</h2>
+    <p class="section-sub">Youth Voice Uganda welcomes support in many forms — every contribution matters.</p>
+    <div class="grid-3">
+      <div class="card"><div class="card__icon card__icon--red" style="font-size:26px;">🙋</div><h3 style="font-size:16px;margin-bottom:8px;">Volunteer</h3><p style="font-size:14px;color:var(--grey);line-height:1.8;">Share your time and skills in community outreach, training, health camps, or administration in Lamwo District.</p></div>
+      <div class="card"><div class="card__icon card__icon--dark" style="font-size:26px;">🤝</div><h3 style="font-size:16px;margin-bottom:8px;">Partner</h3><p style="font-size:14px;color:var(--grey);line-height:1.8;">NGOs, government bodies, companies, and academic institutions — we welcome strategic partnerships that amplify our impact.</p></div>
+      <div class="card"><div class="card__icon card__icon--red" style="font-size:26px;">💛</div><h3 style="font-size:16px;margin-bottom:8px;">Donate</h3><p style="font-size:14px;color:var(--grey);line-height:1.8;">Fund our programs directly via mobile money, card, or bank transfer. <a href="donate.html" style="color:var(--red);font-weight:700;">Donate here →</a></p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ── EmailJS Configuration ──
+  // Replace with your real EmailJS credentials (see SETUP_GUIDE.txt)
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  const IS_CONFIGURED = EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+
+  if (IS_CONFIGURED) {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  } else {
+    document.getElementById('setupNotice').style.display = 'block';
+  }
+
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const fname    = document.getElementById('fname').value.trim();
+    const lname    = document.getElementById('lname').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const phone    = document.getElementById('phone').value.trim();
+    const interest = document.getElementById('interest').value;
+    const message  = document.getElementById('message').value.trim();
+
+    if (!fname || !email || !interest || !message) { alert('Please fill in all required fields.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="btn-spinner"></span> Sending...';
+    document.getElementById('successMsg').style.display = 'none';
+    document.getElementById('errorMsg').style.display   = 'none';
+
+    const params = {
+      to_email   : 'youthvoiceuganda26@gmail.com',
+      from_name  : fname + (lname ? ' ' + lname : ''),
+      from_email : email,
+      phone      : phone || 'Not provided',
+      interest,
+      message,
+      reply_to   : email,
+      sent_at    : new Date().toLocaleString('en-UG', { timeZone: 'Africa/Kampala' }),
+    };
+
+    if (!IS_CONFIGURED) {
+      setTimeout(() => {
+        btn.disabled = false; btn.innerHTML = '✉️ Send Message';
+        document.getElementById('successMsg').innerHTML = '⚙️ <strong>Demo mode:</strong> EmailJS not yet configured. Once set up, messages will reach <strong>youthvoiceuganda26@gmail.com</strong>. See SETUP_GUIDE.txt.';
+        document.getElementById('successMsg').style.display = 'block';
+        this.reset();
+      }, 1400);
+      return;
+    }
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+      document.getElementById('successMsg').innerHTML = '✅ <strong>Message sent successfully!</strong><br>Thank you, ' + fname + '! We\'ll respond within 2–3 business days.';
+      document.getElementById('successMsg').style.display = 'block';
+      this.reset();
+    } catch(err) {
+      document.getElementById('errorMsg').style.display = 'block';
+      console.error('EmailJS error:', err);
+    } finally {
+      btn.disabled = false; btn.innerHTML = '✉️ Send Message';
+    }
+  });
+</script>
+<script src="shared.js"></script>
+</body>
+</html>

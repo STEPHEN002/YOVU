@@ -1,0 +1,150 @@
+════════════════════════════════════════════════════════════
+  YOUTH VOICE UGANDA WEBSITE — SETUP GUIDE
+════════════════════════════════════════════════════════════
+
+Website files included:
+  index.html    — Homepage
+  about.html    — About Us
+  programs.html — Programs
+  gallery.html  — Photo Gallery
+  news.html     — News & Updates
+  team.html     — Our Team
+  contact.html  — Contact (EmailJS)
+  donate.html   — Donation page (Pesapal + Bank)
+  main.css      — All styles
+  shared.js     — Shared navbar + footer
+  assets/
+    logo.jpg    — Youth Voice Uganda logo
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 1 — CONTACT FORM EMAIL (EmailJS — Free)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Messages from the contact form will go to:
+  youthvoiceuganda26@gmail.com
+
+STEP 1 — Sign up free at https://www.emailjs.com
+         Use: youthvoiceuganda26@gmail.com
+
+STEP 2 — Add Gmail service
+         Email Services → Add New → Gmail
+         Connect youthvoiceuganda26@gmail.com
+         Copy the SERVICE ID (e.g. service_abc123)
+
+STEP 3 — Create email template
+         Email Templates → Create New Template
+         
+         To:       youthvoiceuganda26@gmail.com
+         From:     {{from_name}}
+         Reply-to: {{reply_to}}
+         Subject:  New message from VOYU website — {{interest}}
+
+         Body:
+         ┌────────────────────────────────────────┐
+         │ New contact form submission             │
+         │                                        │
+         │ Name:     {{from_name}}                │
+         │ Email:    {{from_email}}               │
+         │ Phone:    {{phone}}                    │
+         │ Interest: {{interest}}                 │
+         │ Sent at:  {{sent_at}}                  │
+         │                                        │
+         │ Message:                               │
+         │ {{message}}                            │
+         └────────────────────────────────────────┘
+
+         Save → Copy TEMPLATE ID (e.g. template_abc123)
+
+STEP 4 — Get Public Key
+         Account icon → Account → API Keys
+         Copy PUBLIC KEY
+
+STEP 5 — Update contact.html
+         Open contact.html, find these 3 lines:
+
+           const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+           const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+           const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+         Replace with your real values and save.
+
+STEP 6 — Test: fill the contact form → check Gmail inbox ✓
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 2 — PESAPAL ONLINE PAYMENTS (Donate page)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1 — Register at https://www.pesapal.com
+         Register as a Business/NGO. You'll need:
+           • CBO registration certificate (CBO L/CD/109972)
+           • Bank account details
+           • National ID of Executive Director (Abalo Doris)
+
+STEP 2 — Get API keys from Pesapal dashboard
+         Settings → API Keys → Consumer Key + Consumer Secret
+
+STEP 3 — Update donate.html
+         Find these 2 lines:
+
+           const PESAPAL_KEY    = 'YOUR_PESAPAL_CONSUMER_KEY';
+           const PESAPAL_SECRET = 'YOUR_PESAPAL_CONSUMER_SECRET';
+
+         Replace with your real Pesapal keys.
+
+STEP 4 — Update bank account details
+         In donate.html, find XXXXXXXXXXXXXXX
+         Replace with your real Centenary Bank account number.
+
+NOTE: The payment integration uses Pesapal's live endpoint.
+      For testing first, change PESAPAL_URL to:
+      https://demo.pesapal.com/API/PostPesapalDirectOrderV4
+      Then switch back to https://www.pesapal.com/... for live.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 3 — GALLERY PHOTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The gallery currently shows placeholder emoji tiles.
+To add real photos:
+  1. Save photos in the assets/ folder (e.g. assets/photo1.jpg)
+  2. In gallery.html, replace the emoji <span> with:
+     <img src="assets/photo1.jpg" style="width:100%;height:100%;object-fit:cover;">
+  3. Or send photos to your developer via:
+     youthvoiceuganda26@gmail.com
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 4 — TEAM NAMES & PHOTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In team.html, replace placeholder names and descriptions
+with real staff names, roles, and bios.
+Add staff photos to assets/ and update the avatar divs.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 5 — HOSTING (Free options)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Recommended free hosting:
+  • Netlify — https://netlify.com
+    Drag and drop the voyu/ folder → live in seconds!
+  • GitHub Pages — https://pages.github.com
+  • Vercel — https://vercel.com
+
+Upload ALL files including the assets/ folder.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SUPPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  EmailJS docs:     https://www.emailjs.com/docs/
+  Pesapal docs:     https://developer.pesapal.com
+  Pesapal Uganda:   info@pesapal.com / +256 704 748 484
+
+Website developed for Youth Voice Uganda (VOYU)
+CBO Registration: L/CD/109972 | Lamwo District, Uganda
+════════════════════════════════════════════════════════════

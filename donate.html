@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — Youth Voice Uganda</title>
+  <link rel="icon" type="image" href="assets/logo.jpg">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .donate-hero { background:var(--black); padding:72px 0 52px; position:relative; overflow:hidden; text-align:center; }
+    .donate-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:320px; height:320px; border-radius:50%; background:rgba(211,47,47,0.10); }
+    .donate-hero::after  { content:''; position:absolute; bottom:-40px; left:-40px; width:240px; height:240px; border-radius:50%; background:rgba(253,216,53,0.07); }
+    .donate-hero h1 { color:var(--white); font-size:clamp(28px,4.5vw,48px); margin-bottom:12px; }
+    .donate-hero p  { color:rgba(255,255,255,0.75); font-size:16px; max-width:500px; margin:0 auto; }
+    .donate-hero .breadcrumb { justify-content:center; margin-bottom:18px; }
+    .trust-badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .trust-badge  { background:var(--light-y); border-radius:5px; padding:6px 12px; font-size:11px; font-weight:700; color:var(--black); display:flex; align-items:center; gap:5px; font-family:'Montserrat',sans-serif; }
+    .pesapal-note { background:var(--light-y); border:2px solid var(--yellow); border-radius:var(--radius); padding:16px 20px; font-size:13px; color:#5d4037; line-height:1.7; margin-top:12px; }
+    .pesapal-note code { background:rgba(0,0,0,0.08); padding:2px 6px; border-radius:3px; font-family:monospace; }
+    .thank-modal  { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center; }
+    .thank-modal.open { display:flex; }
+    .thank-inner  { background:var(--white); border-radius:20px; padding:44px 36px; max-width:460px; width:90%; text-align:center; box-shadow:0 24px 80px rgba(0,0,0,0.3); }
+    .thank-inner .big { font-size:64px; margin-bottom:14px; }
+    .thank-inner h2 { color:var(--red); margin-bottom:10px; }
+    .thank-inner p  { color:var(--grey); font-size:15px; line-height:1.8; margin-bottom:24px; }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="donate-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Donate</span></div>
+    <h1>Support Youth Voice Uganda</h1>
+    <p>Your donation funds advocacy, health programs, and economic training for youth and vulnerable communities in Lamwo District.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="donate-layout">
+
+      <!-- LEFT: Donation form -->
+      <div>
+        <span class="tag">Make a Donation</span>
+        <div class="red-line"></div>
+        <h2 class="section-title" style="font-size:24px;">Choose Your Donation</h2>
+
+        <!-- Amount grid -->
+        <div class="amount-grid" id="amountGrid">
+          <button class="amount-btn" onclick="selectAmt(this,10000)">UGX 10,000<span class="amount-sub">≈ $2.70</span></button>
+          <button class="amount-btn" onclick="selectAmt(this,25000)">UGX 25,000<span class="amount-sub">≈ $6.70</span></button>
+          <button class="amount-btn active" onclick="selectAmt(this,50000)">UGX 50,000<span class="amount-sub">≈ $13.40</span></button>
+          <button class="amount-btn" onclick="selectAmt(this,100000)">UGX 100,000<span class="amount-sub">≈ $27</span></button>
+          <button class="amount-btn" onclick="selectAmt(this,250000)">UGX 250,000<span class="amount-sub">≈ $67</span></button>
+          <button class="amount-btn" onclick="selectAmt(this,0)" id="customBtn">Custom</button>
+        </div>
+        <div class="form-group" id="customWrap" style="display:none;">
+          <label>Enter Amount (UGX)</label>
+          <input type="number" id="customAmt" placeholder="e.g. 150000" min="1000" oninput="updateCustom(this.value)">
+        </div>
+        <div class="amount-display">
+          <div class="sel" id="amtDisplay">UGX 50,000</div>
+          <div style="font-size:13px;color:var(--grey);margin-top:4px;">Ugandan Shillings · Secure Payment</div>
+        </div>
+
+        <!-- Payment method tabs -->
+        <div class="pay-tabs">
+          <button class="pay-tab active" onclick="switchTab('momo',this)">📱 Mobile Money</button>
+          <button class="pay-tab" onclick="switchTab('card',this)">💳 Card</button>
+          <button class="pay-tab" onclick="switchTab('bank',this)">🏦 Bank</button>
+        </div>
+
+        <!-- Mobile Money Panel -->
+        <div class="pay-panel active" id="panel-momo">
+          <div class="momo-nets">
+            <span class="momo-badge momo-badge--mtn">📲 MTN Mobile Money</span>
+            <span class="momo-badge momo-badge--airtel">📲 Airtel Money</span>
+          </div>
+          <p style="font-size:14px;color:var(--grey);margin:12px 0 18px;line-height:1.7;">Pay securely via Pesapal using MTN or Airtel Mobile Money. Fill in your details and you'll receive a payment prompt on your phone.</p>
+          <div class="form-group"><label>Full Name *</label><input type="text" id="mm-name" placeholder="e.g. Akello Grace"></div>
+          <div class="form-group"><label>Email Address *</label><input type="email" id="mm-email" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Mobile Money Number *</label><input type="tel" id="mm-phone" placeholder="+256 7XX XXX XXX"></div>
+          <div class="form-group"><label>Network</label><select id="mm-network"><option value="MTN">MTN Mobile Money</option><option value="Airtel">Airtel Money</option></select></div>
+          <button class="btn btn-red" style="width:100%;justify-content:center;font-size:15px;padding:15px;" onclick="initPesapal('mobile_money')">📱 Donate via Mobile Money</button>
+          <div class="loading-spinner" id="mm-loading"><div class="spinner"></div><p style="color:var(--grey);font-size:14px;">Connecting to Pesapal...</p></div>
+          <div id="mm-frame"></div>
+        </div>
+
+        <!-- Card Panel -->
+        <div class="pay-panel" id="panel-card">
+          <p style="font-size:14px;color:var(--grey);margin-bottom:18px;line-height:1.7;">Pay securely with Visa or Mastercard through Pesapal's encrypted gateway.</p>
+          <div class="form-group"><label>Full Name *</label><input type="text" id="card-name" placeholder="e.g. Akello Grace"></div>
+          <div class="form-group"><label>Email Address *</label><input type="email" id="card-email" placeholder="you@example.com"></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="card-phone" placeholder="+256 7XX XXX XXX"></div>
+          <button class="btn btn-red" style="width:100%;justify-content:center;font-size:15px;padding:15px;" onclick="initPesapal('credit_card')">💳 Donate via Card</button>
+          <div class="loading-spinner" id="card-loading"><div class="spinner"></div><p style="color:var(--grey);font-size:14px;">Opening secure payment...</p></div>
+          <div id="card-frame"></div>
+        </div>
+
+        <!-- Bank Panel -->
+        <div class="pay-panel" id="panel-bank">
+          <p style="font-size:14px;color:var(--grey);margin-bottom:18px;line-height:1.7;">Transfer directly to our organisation's bank account. Please use your name as the payment reference.</p>
+          <div class="bank-card">
+            <div class="bank-card__hd"><span>🏦</span><h3>Bank Account Details</h3></div>
+            <div class="bank-row"><div class="lbl">Account Name</div><div class="val">Youth Voice Uganda <button class="copy-btn" onclick="cp('Youth Voice Uganda')">Copy</button></div></div>
+            <div class="bank-row"><div class="lbl">Bank Name</div><div class="val">Centenary Bank Uganda</div></div>
+            <div class="bank-row"><div class="lbl">Account Number</div><div class="val" id="accNum">XXXXXXXXXXXXXXX <button class="copy-btn" onclick="cp('XXXXXXXXXXXXXXX')">Copy</button></div></div>
+            <div class="bank-row"><div class="lbl">Branch</div><div class="val">Gulu / Lamwo</div></div>
+            <div class="bank-row"><div class="lbl">Swift / BIC</div><div class="val">CENBUGKA</div></div>
+            <div class="bank-row"><div class="lbl">Currency</div><div class="val">UGX (Ugandan Shillings)</div></div>
+          </div>
+          <div style="background:var(--light-y);border-left:4px solid var(--yellow);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:16px;">
+            <p style="font-size:13px;color:#5d4037;line-height:1.7;"><strong>⚠️ After transferring:</strong> Please email <strong>youthvoiceuganda26@gmail.com</strong> with your name, amount, and bank reference so we can confirm and send your receipt.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <div>
+        <div class="impact-box">
+          <h4>💛 Your Donation's Impact</h4>
+          <div class="impact-item"><span class="ic">📚</span><p><strong>UGX 10,000</strong> provides learning materials for one young person</p></div>
+          <div class="impact-item"><span class="ic">⚖️</span><p><strong>UGX 25,000</strong> covers one community rights awareness session</p></div>
+          <div class="impact-item"><span class="ic">🏥</span><p><strong>UGX 50,000</strong> funds one community health sensitisation visit</p></div>
+          <div class="impact-item"><span class="ic">💼</span><p><strong>UGX 100,000</strong> supports one youth through business skills training</p></div>
+          <div class="impact-item"><span class="ic">🌍</span><p><strong>UGX 250,000</strong> funds a full community outreach day reaching 50+ people</p></div>
+        </div>
+
+        <div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:20px;">
+          <h4 style="font-size:13px;font-weight:700;font-family:'Montserrat',sans-serif;color:var(--black);margin-bottom:12px;">🔒 Safe &amp; Secure</h4>
+          <div class="trust-badges">
+            <span class="trust-badge">✅ Pesapal Secured</span>
+            <span class="trust-badge">🔐 Encrypted</span>
+            <span class="trust-badge">📋 Registered CBO</span>
+            <span class="trust-badge">🇺🇬 Uganda</span>
+          </div>
+          <p style="font-size:12px;color:var(--grey);margin-top:12px;line-height:1.7;">All card and mobile payments are processed through Pesapal — East Africa's trusted payment platform. We never store your financial information.</p>
+        </div>
+
+        <div style="background:var(--offwhite);border-radius:var(--radius);padding:22px;border:1px solid #e0e0e0;">
+          <h4 style="font-size:13px;font-weight:700;font-family:'Montserrat',sans-serif;color:var(--black);margin-bottom:10px;">📞 Need Help?</h4>
+          <p style="font-size:13px;color:var(--grey);line-height:1.7;margin-bottom:8px;">Our team is happy to assist with donation questions.</p>
+          <p style="font-size:13px;color:#444;">📞 +256 773 704 947</p>
+          <p style="font-size:13px;color:#444;">✉️ youthvoiceuganda26@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Thank you modal -->
+<div class="thank-modal" id="thankModal">
+  <div class="thank-inner">
+    <div class="big">🙏</div>
+    <h2>Thank You!</h2>
+    <p>Your donation is being processed. You'll receive a confirmation on your phone or email shortly. <strong>Together we give youth a powerful voice.</strong></p>
+    <button class="btn btn-red" onclick="closeModal()" style="width:100%;justify-content:center;">Close</button>
+  </div>
+</div>
+
+<script>
+  let selAmt = 50000;
+
+  function selectAmt(btn, amt) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cw = document.getElementById('customWrap');
+    if (amt === 0) { cw.style.display='block'; selAmt = parseInt(document.getElementById('customAmt').value)||0; }
+    else           { cw.style.display='none';  selAmt = amt; }
+    updateDisplay();
+  }
+  function updateCustom(v) { selAmt = parseInt(v)||0; updateDisplay(); }
+  function updateDisplay() {
+    document.getElementById('amtDisplay').textContent = selAmt > 0 ? 'UGX ' + selAmt.toLocaleString() : 'Enter amount above';
+  }
+  function switchTab(panel, btn) {
+    document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + panel).classList.add('active');
+  }
+
+  // ── Pesapal OAuth 1.0 HMAC-SHA1 ──
+  const PESAPAL_KEY    = 'YOUR_PESAPAL_CONSUMER_KEY';
+  const PESAPAL_SECRET = 'YOUR_PESAPAL_CONSUMER_SECRET';
+  const PESAPAL_URL    = 'https://www.pesapal.com/API/PostPesapalDirectOrderV4';
+
+  function rfc3986(str) {
+    return encodeURIComponent(String(str))
+      .replace(/!/g,'%21').replace(/'/g,'%27')
+      .replace(/\(/g,'%28').replace(/\)/g,'%29').replace(/\*/g,'%2A');
+  }
+  async function hmacSha1(secret, msg) {
+    const enc = new TextEncoder();
+    const key = await crypto.subtle.importKey('raw', enc.encode(secret), {name:'HMAC',hash:'SHA-1'}, false, ['sign']);
+    const sig = await crypto.subtle.sign('HMAC', key, enc.encode(msg));
+    return btoa(String.fromCharCode(...new Uint8Array(sig)));
+  }
+  async function buildUrl(xml, cb) {
+    const ts    = Math.floor(Date.now()/1000).toString();
+    const nonce = 'VOYU' + Date.now() + Math.random().toString(36).slice(2,8);
+    const params = { oauth_callback:cb, oauth_consumer_key:PESAPAL_KEY, oauth_nonce:nonce, oauth_signature_method:'HMAC-SHA1', oauth_timestamp:ts, oauth_version:'1.0', pesapal_request_data:xml };
+    const pStr  = Object.keys(params).sort().map(k => rfc3986(k)+'='+rfc3986(params[k])).join('&');
+    const base  = 'GET&'+rfc3986(PESAPAL_URL)+'&'+rfc3986(pStr);
+    const sig   = await hmacSha1(rfc3986(PESAPAL_SECRET)+'&', base);
+    const all   = {...params, oauth_signature:sig};
+    return PESAPAL_URL + '?' + Object.keys(all).sort().map(k => rfc3986(k)+'='+rfc3986(all[k])).join('&');
+  }
+
+  async function initPesapal(method) {
+    if (!selAmt || selAmt < 1000) { alert('Please select or enter a donation amount (minimum UGX 1,000).'); return; }
+    let name, email, phone;
+    if (method === 'mobile_money') {
+      name=document.getElementById('mm-name').value.trim(); email=document.getElementById('mm-email').value.trim(); phone=document.getElementById('mm-phone').value.trim();
+      if (!name||!email||!phone) { alert('Please fill in your name, email, and mobile money number.'); return; }
+    } else {
+      name=document.getElementById('card-name').value.trim(); email=document.getElementById('card-email').value.trim(); phone=document.getElementById('card-phone').value.trim();
+      if (!name||!email) { alert('Please fill in your name and email.'); return; }
+    }
+    const lid = method==='mobile_money'?'mm-loading':'card-loading';
+    const fid = method==='mobile_money'?'mm-frame':'card-frame';
+    document.getElementById(lid).style.display='block';
+    document.getElementById(fid).innerHTML='';
+
+    // Check if keys are configured
+    if (PESAPAL_KEY === 'YOUR_PESAPAL_CONSUMER_KEY') {
+      setTimeout(() => {
+        document.getElementById(lid).style.display='none';
+        document.getElementById(fid).innerHTML=`
+          <div style="background:var(--light-y);border:2px solid var(--yellow);border-radius:10px;padding:24px;text-align:center;margin-top:12px;">
+            <div style="font-size:44px;margin-bottom:12px;">⚙️</div>
+            <h3 style="color:var(--black);margin-bottom:8px;">Pesapal Setup Required</h3>
+            <p style="color:var(--grey);font-size:13px;line-height:1.7;">
+              To activate online payments, register at <a href="https://www.pesapal.com" target="_blank" style="color:var(--red);font-weight:700;">pesapal.com</a>,
+              get your Consumer Key &amp; Secret, then replace <code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:3px;">YOUR_PESAPAL_CONSUMER_KEY</code>
+              in this file. See <strong>SETUP_GUIDE.txt</strong> for full instructions.<br><br>
+              <strong>Meanwhile, use Bank Transfer or call +256 773 704 947.</strong>
+            </p>
+          </div>`;
+      }, 1000);
+      return;
+    }
+
+    try {
+      const orderId = 'VOYU-' + Date.now();
+      const cb = window.location.origin + (window.location.pathname.replace(/\/[^/]*$/,'') || '') + '/donate.html?payment=success&ref=' + orderId;
+      const fn = name.split(' ')[0], ln = name.split(' ').slice(1).join(' ') || fn;
+      const xml = `<?xml version="1.0" encoding="utf-8"?><PesapalDirectOrderInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Amount="${selAmt}" Description="Donation to Youth Voice Uganda" Type="MERCHANT" Reference="${orderId}" FirstName="${fn}" LastName="${ln}" Email="${email}" PhoneNumber="${phone||''}" Currency="UGX" xmlns="http://www.pesapal.com" />`;
+      const url = await buildUrl(xml, cb);
+      document.getElementById(lid).style.display='none';
+      document.getElementById(fid).innerHTML=`
+        <div style="margin-top:12px;">
+          <iframe src="${url}" style="width:100%;height:520px;border:2px solid #e0e0e0;border-radius:10px;background:#f9f9f9;" title="Pesapal Secure Payment" allow="payment"></iframe>
+          <p style="font-size:12px;color:#aaa;text-align:center;margin-top:8px;">🔒 Powered by <strong>Pesapal</strong> · Secure &amp; Encrypted</p>
+        </div>`;
+    } catch(err) {
+      document.getElementById(lid).style.display='none';
+      document.getElementById(fid).innerHTML=`<div style="background:#ffebee;border:2px solid var(--red);border-radius:10px;padding:22px;text-align:center;margin-top:12px;"><h3 style="color:var(--red);margin-bottom:8px;">⚠️ Payment Error</h3><p style="color:var(--grey);font-size:14px;">Could not connect to Pesapal. Please try Bank Transfer or contact us at +256 773 704 947.</p></div>`;
+      console.error(err);
+    }
+  }
+
+  function cp(txt) { navigator.clipboard.writeText(txt).then(()=>alert('Copied: '+txt)); }
+  function closeModal() { document.getElementById('thankModal').style.display='none'; }
+
+  window.addEventListener('load', () => {
+    if (new URLSearchParams(window.location.search).get('payment')==='success')
+      document.getElementById('thankModal').style.display='flex';
+  });
+</script>
+<script src="shared.js"></script>
+</body>
+</html>
